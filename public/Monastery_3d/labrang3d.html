@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labrang Monastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: #e5f4f8;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #info-panel-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(-120%);
+        }
+        #info-panel-container.active {
+            transform: translateX(0);
+        }
+        #map-container {
+            width: 100vw;
+            height: 100vh;
+        }
+        #info-panel {
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #a5c7d0 #e5f4f8;
+        }
+        #info-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+        #info-panel::-webkit-scrollbar-track {
+            background: #e5f4f8;
+        }
+        #info-panel::-webkit-scrollbar-thumb {
+            background-color: #a5c7d0;
+            border-radius: 10px;
+            border: 2px solid #e5f4f8;
+        }
+        #info-panel h2, #info-panel h3 {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 antialiased">
+
+    <!-- 360° View Container -->
+    <div id="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!4v1757079534786!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ2szZEwzbUFF!2m2!1d27.41800011005887!2d88.57945887534423!3f270!4f0!5f0.7820865974627469" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <!-- Info Panel -->
+    <div id="info-panel-container">
+        <div id="info-panel" class="bg-blue-200 p-6 rounded-3xl shadow-2xl max-w-sm w-[400px]">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-gray-800">Location Details</h2>
+                <button id="close-panel-btn" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="info-content">
+                <!-- Location details will be dynamically injected here -->
+            </div>
+
+            <div class="mt-4 text-xs text-gray-500 text-center">
+                Click on the location in the 360° view to see details.
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const infoPanelContainer = document.getElementById('info-panel-container');
+            const infoContent = document.getElementById('info-content');
+
+            // Data for Labrang Monastery
+            const locationData = {
+                name: "Labrang Monastery",
+                image: "Photos/labrang.jpg",
+                badge: "Nyingma Sect Monastery",
+                address: "Near Phodong, North Sikkim, India",
+                coordinates: "27.418000° N, 88.579458° E",
+                significance: "An important 19th-century monastery of the Nyingma school of Tibetan Buddhism, known for its beautiful and well-preserved murals."
+            };
+
+            // Function to display location information in the panel
+            function displayLocationInfo(data) {
+                const infoHtml = `
+                    <div class="space-y-4">
+                        <div class="w-full h-auto rounded-xl overflow-hidden shadow-md">
+                            <img src="${data.image}" alt="${data.name}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-2">
+                            <h3 class="text-3xl font-bold text-gray-800">${data.name}</h3>
+                            <div class="inline-block mt-2 px-3 py-1 rounded-full text-sm font-medium text-gray-700 bg-gray-200">
+                                ${data.badge}
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span class="text-md font-semibold text-gray-700">Address</span>
+                            </div>
+                            <p class="text-md text-gray-600">${data.address}</p>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.636-5.636a2 2 0 010-2.828L14.07 3.732a2 2 0 012.828 0l5.636 5.636a2 2 0 010 2.828L10.07 20.732a2 2 0 01-2.828 0z"></path>
+                                </svg>
+                                <span class="text-md font-semibold text-gray-700">Coordinates</span>
+                            </div>
+                            <p class="text-md text-gray-600">${data.coordinates}</p>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="text-md font-semibold text-gray-700">Significance</span>
+                            </div>
+                            <p class="text-md text-gray-600">${data.significance}</p>
+                        </div>
+
+                        <div class="space-y-2 mt-6">
+                            <span class="text-md font-semibold text-gray-700">More Options</span>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Labrang+Monastery+Sikkim" target="_blank" class="block text-md text-blue-600 hover:text-blue-800">
+                                <span class="flex items-center space-x-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                    <span>View on Google Maps</span>
+                                </span>
+                            </a>
+                            <a href="labrang1.html" target="_blank" class="block text-md text-blue-600 hover:text-blue-800">
+                                <span class="flex items-center space-x-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13a2 2 0 00-2 2.002V20h4V8.253a2 2 0 00-2-2.002z"></path></svg>
+                                    <span>Learn More</span>
+                                </span>
+                            </a>
+                        </div>
+                        
+                        <button class="w-full mt-4 px-4 py-3 bg-teal-600 text-white rounded-xl font-bold hover:bg-teal-700 transition-colors duration-200">
+                            Save Location
+                        </button>
+                    </div>
+                `;
+                infoContent.innerHTML = infoHtml;
+                infoPanelContainer.classList.add('active');
+            }
+
+            // Handle panel closing
+            document.getElementById('close-panel-btn').addEventListener('click', () => {
+                infoPanelContainer.classList.remove('active');
+            });
+
+            // Automatically show the info panel on page load
+            displayLocationInfo(locationData);
+        });
+    </script>
+
+</body>
+</html>
+

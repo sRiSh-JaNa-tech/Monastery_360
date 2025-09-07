@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labrang Monastery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+     body {
+  margin: 0;
+  font-family: 'Merriweather', serif;
+  background: url(Photos/mural1.jpeg) no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  color: #3a3a3a;
+  line-height: 1.7;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7); /* Change to rgba(0,0,0,0.5) for dark overlay */
+  z-index: -1;
+}
+
+    header {
+  background: url(photos/header_image2.jpg) no-repeat center center;
+  background-size: cover;
+  color: white;
+  padding: 60px 20px;
+  text-align: left;
+  position: relative;
+}
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.466); /* darkens the image */
+  z-index: 0;
+}
+
+header h1 {
+  position: relative;
+  z-index: 1;
+  font-size: 3.5em;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  background: linear-gradient(to right, #ffe100, #0095ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+    .main-content-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: 10px;
+    }
+
+    .monastery-img {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      margin: 0 auto 20px auto;
+      display: block;
+    }
+
+    .description {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: justify;
+    }
+
+    .description h1, .description h2 {
+        font-family: 'Playfair Display', serif;
+        color: #2c2c2c;
+    }
+
+    .description h1 {
+        font-size: 2.5em;
+        text-align: center;
+        margin-bottom: 0.5em;
+    }
+
+    .description h2 {
+        font-size: 1.8em;
+        border-bottom: 2px solid #d2b302a7;
+        padding-bottom: 5px;
+        margin-top: 1.5em;
+        margin-bottom: 0.8em;
+    }
+
+    .description p {
+        font-size: 1.1em;
+        margin-bottom: 1.2em;
+    }
+
+    .view-3d-btn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #075da3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: fit-content;
+      transition: background-color 0.3s;
+    }
+    .view-3d-btn:hover {
+      background: #c23d3d;
+    }
+    .iframe-container {
+      display: none;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 900px;
+      height: 500px;
+      border: 5px solid #2481a0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    
+    .gallery-section {
+        margin-top: 40px;
+    }
+
+    .gallery-section h2 {
+        text-align: center;
+        font-size: 2.2em;
+        margin-bottom: 20px;
+        font-family: 'Playfair Display', serif;
+        color: #2c2c2c;
+    }
+
+    .image-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease;
+    }
+    
+    .image-container:hover img {
+        transform: scale(1.05);
+    }
+    
+    .image-caption {
+        margin-top: 12px;
+        font-size: 1em;
+        text-align: center;
+        color: #555;
+        font-style: italic;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      text-align: center;
+      background: #d2b302a7;
+      color: white;
+    }
+
+    /* ---------------- Chatbot Styles ---------------- */
+    .chatbot-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+    .chatbot-icon img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+    }
+    .chat-window {
+      position: fixed;
+      bottom: 110px;
+      right: 20px;
+      width: 320px;
+      max-height: 400px;
+      background: white;
+      border: 2px solid #2e8b57;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+    }
+    .chat-header {
+      background: #2e8b57;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .chat-body {
+      padding: 10px;
+      flex-grow: 1;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+    .chat-message {
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 8px;
+      max-width: 80%;
+    }
+    .bot {
+      background: #e0f7e9;
+      align-self: flex-start;
+    }
+    .user {
+      background: #d1e7ff;
+      align-self: flex-end;
+    }
+    .chat-footer {
+      padding: 10px;
+      text-align: center;
+      border-top: 1px solid #ccc;
+    }
+    .chat-footer button {
+      margin: 5px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      background: #2e8b57;
+      color: white;
+      cursor: pointer;
+    }
+    .typing {
+      font-style: italic;
+      color: #888;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Labrang Monastery</h1>
+  </header>
+
+  <div class="main-content-wrapper">
+    <div class="description">
+      <img src="Photos/labrang.jpg" alt="Labrang Monastery" class="monastery-img">
+      <h1>About Labrang Monastery</h1>
+      <p>
+        Labrang Monastery, located in the scenic region of North Sikkim, is a revered site belonging to the Nyingma sect of Tibetan Buddhism. Established in the 19th century, this historic monastery stands as a significant spiritual and cultural center, attracting pilgrims and travelers seeking peace and insight into Buddhist traditions. Its name translates to "the lama's dwelling."
+      </p>
+      <h2>History & Culture</h2>
+      <p>Founded around 1814 by Gyalshe Rigzing Chempa, Labrang Monastery is one of the premier monastic institutions of the Nyingma school in Sikkim. It is a vital center for the Nyingma tradition, dedicated to preserving ancient rituals, sacred texts, and profound teachings. The monastery is particularly known for its collection of well-preserved murals and serves as an important pilgrimage destination.</p>
+      <h2>Architectural Features</h2>
+      <p>The monastery showcases classic Tibetan architectural styles, characterized by intricate woodwork and vibrant, detailed murals that adorn its walls. These artworks depict various Buddhist deities, mandalas, and spiritual teachings, creating a visually stunning and deeply contemplative atmosphere within the prayer halls and corridors.</p>
+      
+      <button class="view-3d-btn" onclick="toggle3D()"><i>Take a 3D tour</i></button>
+      <div class="iframe-container" id="iframeContainer">
+        <iframe src="https://www.google.com/maps/embed?pb=!4v1757079534786!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ2szZEwzbUFF!2m2!1d27.41800011005887!2d88.57945887534423!3f270!4f0!5f0.7820865974627469" allowfullscreen="" loading="lazy"></iframe>
+      </div> 
+    </div>
+    
+    <div class="gallery-section">
+        <h2>Image Gallery</h2>
+        <div class="image-gallery">
+            <div class="image-container">
+                <img src="Photos/mural_wall_paintings.jpeg" alt="Mural wall paintings">
+                <p class="image-caption">Vibrant and detailed mural paintings inside the monastery.</p>
+            </div>
+            <div class="image-container">
+                <img src="Photos/kid and praying wheel.jpeg" alt="Child by a prayer wheel">
+                <p class="image-caption">A young child stands by traditional prayer wheels.</p>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Sikkim Tourism Board | Designed for Travelers’ Experience</p>
+  </footer>
+
+  <script>
+    function toggle3D() {
+      const iframeContainer = document.getElementById("iframeContainer");
+      const isVisible = iframeContainer.style.display === "block";
+
+      if (!isVisible) {
+        iframeContainer.style.display = "block";
+        document.addEventListener("click", closeOnOutsideClick);
+      } else {
+        iframeContainer.style.display = "none";
+        document.removeEventListener("click", closeOnOutsideClick);
+      }
+    }
+
+    function closeOnOutsideClick(event) {
+      const iframeContainer = document.getElementById("iframeContainer");
+      const button = document.querySelector(".view-3d-btn");
+
+      if (!iframeContainer.contains(event.target) && !button.contains(event.target)) {
+        iframeContainer.style.display = "none";
+        document.removeEventListener("click", closeOnOutsideClick);
+      }
+    }
+
+    function toggleChat() {
+      const chatWindow = document.getElementById("chatWindow");
+      chatWindow.style.display = chatWindow.style.display === "flex" ? "none" : "flex";
+    }
+
+    function botReply(type) {
+      const chatBody = document.getElementById("chatBody");
+      const typingDiv = document.createElement("div");
+      typingDiv.className = "typing";
+      typingDiv.innerText = "Saknam is typing...";
+      chatBody.appendChild(typingDiv);
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      setTimeout(() => {
+        chatBody.removeChild(typingDiv);
+        let botMessage = document.createElement("div");
+        botMessage.className = "chat-message bot";
+
+        if (type === "history") {
+          botMessage.innerText = "Labrang Monastery was founded in the 19th century and is an important monastery of the Nyingma sect, the oldest school of Tibetan Buddhism.";
+        } else if (type === "timing") {
+          botMessage.innerText = "Visiting hours are typically from morning until late afternoon. It is best to visit when prayers are being held for a truly immersive experience.";
+        } else if (type === "recommend") {
+          botMessage.innerText = "Pay special attention to the ancient and well-preserved murals inside the monastery; they are a significant highlight for visitors.";
+        }
+
+        chatBody.appendChild(botMessage);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 1000);
+    }
+  </script>
+
+  <!-- Chatbot -->
+  <div class="chatbot-icon" onclick="toggleChat()">
+    <img src="Photos/red_panda.jpg" alt="Red Panda Bot">
+  </div>
+
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">Saknam the Red Panda</div>
+    <div class="chat-body" id="chatBody">
+      <div class="chat-message bot">Hi there! I am Saknam 🐼, how can I help you?</div>
+    </div>
+    <div class="chat-footer">
+      <button onclick="botReply('history')">📜 History</button>
+      <button onclick="botReply('timing')">🕰 Opening Hours</button>
+      <button onclick="botReply('recommend')">✨ Recommendations</button>
+    </div>
+  </div>
+
+</body>
+</html>

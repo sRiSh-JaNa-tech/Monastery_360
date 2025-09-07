@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Festival model for events like those displayed on CalendarPage
+model Festival {
+  id          String   @id @default(uuid()) // Unique identifier
+  name        String   @db.VarChar(255) // Festival name (e.g., "Losar")
+  date        String   @db.VarChar(50)  // Date as string (e.g., "2025-02-12")
+  location    String   @db.VarChar(255) // Location (e.g., "Gangtok")
+  description String?  @db.Text         // Short description (nullable)
+  image       String   @db.VarChar(255) @default("/placeholder.svg") // Image URL
+  month       String   @db.VarChar(20)  // Month for filtering (e.g., "February")
+  details     String?  @db.Text         // Detailed HTML content (nullable)
+  createdAt   DateTime @default(now())   // Creation timestamp
+  updatedAt   DateTime @default(now())       // Last updated timestamp
+}
+
+// Hotel model for accommodation listings
+model Hotel {
+  id          String   @id @default(uuid()) // Unique identifier
+  title       String   @db.VarChar(255) // Hotel name
+  image       String   @db.VarChar(255) @default("/placeholder.svg") // Image URL
+  description String?  @db.Text         // Description (nullable)
+  location    String   @db.VarChar(255) @default("") // Location (e.g., "Gangtok")
+  rating      Float    @default(0.0)     // Rating (0.0 to 5.0)
+  price       Int      @default(0)       // Price per night
+  lat         Float    @default(0.0)     // Latitude for mapping
+  lng         Float    @default(0.0)     // Longitude for mapping
+  access      String   @db.VarChar(50)  @default("full") // Accessibility (e.g., "full", "limited")
+  createdAt   DateTime @default(now())   // Creation timestamp
+  updatedAt   DateTime @default(now())       // Last updated timestamp
+}
+
+// Package model (renamed due to reserved keyword)
+model Package {
+  id          String   @id @default(uuid()) // Unique identifier
+  title       String   @db.VarChar(255) // Package name
+  duration    String   @db.VarChar(50)  @default("N/A") // Duration (e.g., "3D/2N")
+  price       Int      @default(0)       // Package price
+  tags        Json         // JSON array of tags (e.g., ["adventure", "cultural"])
+  image       String   @db.VarChar(255) @default("/placeholder.svg") // Image URL
+  description String?  @db.Text         // Description (nullable)
+  createdAt   DateTime @default(now())   // Creation timestamp
+  updatedAt   DateTime @default(now())        // Last updated timestamp
+
+  @@map("package") // Maps to MySQL table 'package'
+}
+
+// Place model for DiscoverPage and HomePage
+model Place {
+  id           String   @id @default(uuid()) // Unique identifier
+  title        String   @db.VarChar(255) // Place name (e.g., "Rumtek Monastery")
+  content      String?  @db.Text         // HTML content for modal (nullable)
+  images       Json         // JSON array of image URLs
+  video        String?  @db.VarChar(255) @default("") // Optional video URL
+  description  String?  @db.Text         // Optional short description (nullable)
+  lat          Float    @default(0.0)     // Latitude for mapping
+  lng          Float    @default(0.0)     // Longitude for mapping
+  access       String   @db.VarChar(50)  @default("full") // Accessibility (e.g., "full", "limited")
+  isTopVisited Boolean  @default(false)   // Flag for top-visited places
+  createdAt    DateTime @default(now())   // Creation timestamp
+  updatedAt    DateTime @default(now())       // Last updated timestamp
+}
+
+// Taxi model for transportation options
+model Taxi {
+  id          String   @id @default(cuid()) // Unique identifier (using cuid for variation)
+  title       String   @db.VarChar(255) // Taxi service name
+  location    String   @db.VarChar(255) @default("") // Service area (e.g., "Gangtok")
+  priceLabel  String   @db.VarChar(50)  @default("N/A") // Price description (e.g., "₹500/hr")
+  rating      Float    @default(0.0)     // Rating (0.0 to 5.0)
+  image       String   @db.VarChar(255) @default("/placeholder.svg") // Image URL
+  description String?  @db.Text         // Description (nullable)
+  createdAt   DateTime @default(now())   // Creation timestamp
+  updatedAt   DateTime @default(now())       // Last updated timestamp
+}
+
+// Restaurant model for dining options
+model Restaurant {
+  id          String   @id @default(cuid()) // Unique identifier
+  title       String   @db.VarChar(255) // Restaurant name
+  location    String   @db.VarChar(255) @default("") // Location (e.g., "Gangtok")
+  priceLabel  String   @db.VarChar(50)  @default("N/A") // Price range (e.g., "₹₹")
+  rating      Float    @default(0.0)     // Rating (0.0 to 5.0)
+  image       String   @db.VarChar(255) @default("/placeholder.svg") // Image URL
+  description String?  @db.Text         // Description (nullable)
+  lat         Float    @default(0.0)     // Latitude for mapping
+  lng         Float    @default(0.0)     // Longitude for mapping
+  access      String   @db.VarChar(50)  @default("full") // Accessibility (e.g., "full", "limited")
+  createdAt   DateTime @default(now())   // Creation timestamp
+  updatedAt   DateTime @default(now())       // Last updated timestamp
+}

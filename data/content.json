@@ -1,0 +1,393 @@
+{
+  "topVisited": [
+    {
+      "id": "lingdum",
+      "title": "Lingdum Monastery",
+      "location": "Gangtok, Sikkim",
+      "description": "Serene prayer halls and classic Tibetan lines welcome sunrise chants.",
+      "image": "/placeholder.svg?height=240&width=400",
+      "lat": 27.3389,
+      "lng": 88.6132,
+      "access": "full"
+    },
+    {
+      "id": "lhabrung",
+      "title": "Lhabrung Monastery",
+      "location": "East Sikkim",
+      "description": "Vibrant rituals, sacred relics, and a peaceful ambience for reflection.",
+      "image": "/placeholder.svg?height=240&width=400",
+      "lat": 27.2512,
+      "lng": 88.616,
+      "access": "partial"
+    },
+    {
+      "id": "rumtek",
+      "title": "Rumtek Monastery",
+      "location": "Gangtok",
+      "description": "Seat of the Karmapa with a resplendent golden stupa and grand courtyards.",
+      "image": "/placeholder.svg?height=240&width=400",
+      "lat": 27.3316,
+      "lng": 88.613,
+      "access": "full"
+    },
+    {
+      "id": "pemayangtse",
+      "title": "Pemayangtse Monastery",
+      "location": "Pelling",
+      "description": "Historic monastery with sweeping views of Kangchenjunga at dusk.",
+      "image": "/placeholder.svg?height=240&width=400",
+      "lat": 27.3008,
+      "lng": 88.2335,
+      "access": "partial"
+    },
+    {
+      "id": "phodang",
+      "title": "Phodang Monastery",
+      "location": "North Sikkim",
+      "description": "Bright murals, intricate woodwork and cheerful prayer flags.",
+      "image": "/placeholder.svg?height=240&width=400",
+      "lat": 27.4368,
+      "lng": 88.5899,
+      "access": "limited"
+    },
+    {
+      "id": "tashiding",
+      "title": "Tashiding Monastery",
+      "location": "West Sikkim",
+      "description": "Set on a hilltop, revered for pure water springs and ancient chortens.",
+      "image": "/placeholder.svg?height=240&width=400",
+      "lat": 27.2684,
+      "lng": 88.3676,
+      "access": "partial"
+    }
+  ],
+  "packages": [
+    {
+      "id": "serene-sikkim",
+      "title": "Serene Sikkim Getaway",
+      "duration": "5N / 6D",
+      "description": "Tranquil lakes, monasteries and breathtaking Himalayan views.",
+      "price": 18999,
+      "image": "/placeholder.svg?height=240&width=400",
+      "tags": ["lakes", "monasteries", "family"]
+    },
+    {
+      "id": "himalayan-adventure",
+      "title": "Himalayan Adventure Trails",
+      "duration": "8N / 9D",
+      "description": "Gurudongmar to Yumthang Valley—nature and culture combined.",
+      "price": 32999,
+      "image": "/placeholder.svg?height=240&width=400",
+      "tags": ["hiking", "north", "nature"]
+    },
+    {
+      "id": "monastery-trail",
+      "title": "Sikkim Monastery Trail",
+      "duration": "4N / 5D",
+      "description": "Handpicked monasteries, meditation, and soulful cuisine.",
+      "price": 15999,
+      "image": "/placeholder.svg?height=240&width=400",
+      "tags": ["monasteries", "culture"]
+    },
+    {
+      "id": "north-sikkim-bloom",
+      "title": "North Sikkim Bloom",
+      "duration": "6N / 7D",
+      "description": "Lachung, Lachen and rhododendron valleys in full color.",
+      "price": 24999,
+      "image": "/placeholder.svg?height=240&width=400",
+      "tags": ["flowers", "north"]
+    },
+    {
+      "id": "culture-and-cuisine",
+      "title": "Culture & Cuisine",
+      "duration": "3N / 4D",
+      "description": "Cooking sessions, folk evenings and monastery walks.",
+      "price": 12999,
+      "image": "/placeholder.svg?height=240&width=400",
+      "tags": ["food", "culture"]
+    }
+  ],
+  "hotels": [
+    {
+      "id": "elgin-nor-khill",
+      "title": "The Elgin Nor-Khill",
+      "location": "Gangtok",
+      "rating": 4.6,
+      "price": 5200,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Colonial-era charm with manicured lawns and tea service.",
+      "lat": 27.331,
+      "lng": 88.612,
+      "access": "full"
+    },
+    {
+      "id": "mayfair-resort",
+      "title": "Mayfair Spa Resort & Casino",
+      "location": "Gangtok",
+      "rating": 4.7,
+      "price": 7800,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Luxurious suites, forest views and a full-service spa.",
+      "lat": 27.316,
+      "lng": 88.606,
+      "access": "full"
+    },
+    {
+      "id": "rhododendron-lodge",
+      "title": "Rhododendron Lodge",
+      "location": "Lachung",
+      "rating": 4.5,
+      "price": 3200,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Cozy wood interiors with bonfire nights and local meals.",
+      "lat": 27.689,
+      "lng": 88.741,
+      "access": "partial"
+    },
+    {
+      "id": "mountain-vista",
+      "title": "Mountain Vista Retreat",
+      "location": "Pelling",
+      "rating": 4.4,
+      "price": 4100,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Balcony rooms with Kangchenjunga sunrise views.",
+      "lat": 27.299,
+      "lng": 88.241,
+      "access": "full"
+    },
+    {
+      "id": "pine-grove",
+      "title": "Pine Grove Hotel",
+      "location": "Namchi",
+      "rating": 4.2,
+      "price": 2800,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Budget-friendly stay surrounded by whispering pines.",
+      "lat": 27.165,
+      "lng": 88.364,
+      "access": "limited"
+    },
+    {
+      "id": "royal-orchid",
+      "title": "Royal Orchid Grand",
+      "location": "Gangtok",
+      "rating": 4.3,
+      "price": 4600,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "City comfort with easy access to MG Marg.",
+      "lat": 27.325,
+      "lng": 88.612,
+      "access": "full"
+    },
+    {
+      "id": "kanchen-inn",
+      "title": "Kanchen Inn",
+      "location": "Pelling",
+      "rating": 4.1,
+      "price": 2500,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Simple rooms facing the snowy ridge.",
+      "lat": 27.316,
+      "lng": 88.243,
+      "access": "partial"
+    },
+    {
+      "id": "teesta-view",
+      "title": "Teesta View Hotel",
+      "location": "East Sikkim",
+      "rating": 4.0,
+      "price": 2300,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Riverside breeze and homely meals.",
+      "lat": 27.19,
+      "lng": 88.53,
+      "access": "limited"
+    }
+  ],
+  "taxis": [
+    {
+      "id": "sikkim-mountain-cabs",
+      "title": "Sikkim Mountain Cabs",
+      "location": "Gangtok",
+      "priceLabel": "₹12/km",
+      "rating": 4.6,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Reliable fleet for airport transfers and sightseeing."
+    },
+    {
+      "id": "himalayan-taxi-service",
+      "title": "Himalayan Taxi Service",
+      "location": "Pelling",
+      "priceLabel": "₹10/km",
+      "rating": 4.3,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Experienced drivers for winding mountain roads."
+    },
+    {
+      "id": "north-sikkim-travels",
+      "title": "North Sikkim Travels",
+      "location": "Lachung",
+      "priceLabel": "₹15/km",
+      "rating": 4.4,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Specialists for high-altitude monastery tours."
+    },
+    {
+      "id": "yuksom-riders",
+      "title": "Yuksom Riders",
+      "location": "Yuksom",
+      "priceLabel": "₹11/km",
+      "rating": 4.2,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Best for Dzongri and nearby trailheads."
+    },
+    {
+      "id": "teesta-cabs",
+      "title": "Teesta Valley Cabs",
+      "location": "Namchi",
+      "priceLabel": "₹13/km",
+      "rating": 4.1,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Friendly drivers with local tips."
+    }
+  ],
+  "restaurants": [
+    {
+      "id": "taste-of-tibet",
+      "title": "Taste of Tibet",
+      "location": "Gangtok",
+      "priceLabel": "₹400 avg/person",
+      "rating": 4.4,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Momos, thukpa and smoky chilli pork.",
+      "lat": 27.328,
+      "lng": 88.612,
+      "access": "full"
+    },
+    {
+      "id": "sikkimese-kitchen",
+      "title": "Sikkimese Kitchen",
+      "location": "Namchi",
+      "priceLabel": "₹350 avg/person",
+      "rating": 4.5,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Organic ingredients cooked the traditional way.",
+      "lat": 27.171,
+      "lng": 88.363,
+      "access": "partial"
+    },
+    {
+      "id": "rhododendron-restaurant",
+      "title": "Rhododendron Restaurant",
+      "location": "Yuksom",
+      "priceLabel": "₹500 avg/person",
+      "rating": 4.6,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Local fare with valley views.",
+      "lat": 27.381,
+      "lng": 88.257,
+      "access": "limited"
+    },
+    {
+      "id": "mountain-view-cafe",
+      "title": "Mountain View Cafe",
+      "location": "Pelling",
+      "priceLabel": "₹300 avg/person",
+      "rating": 4.2,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Warm coffee and balcony sunsets.",
+      "lat": 27.314,
+      "lng": 88.241,
+      "access": "full"
+    },
+    {
+      "id": "prayer-flag-bistro",
+      "title": "Prayer Flag Bistro",
+      "location": "Gangtok",
+      "priceLabel": "₹420 avg/person",
+      "rating": 4.3,
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Cozy corner for thenthuk and butter tea.",
+      "lat": 27.33,
+      "lng": 88.61,
+      "access": "full"
+    }
+  ],
+  "places": [
+    {
+      "id": "tsomgo-lake",
+      "title": "Tsomgo Lake",
+      "location": "East Sikkim",
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Glacial lake that turns turquoise by summer.",
+      "lat": 27.375,
+      "lng": 88.764,
+      "access": "limited"
+    },
+    {
+      "id": "yumthang-valley",
+      "title": "Yumthang Valley",
+      "location": "North Sikkim",
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Alpine meadows carpeted with rhododendrons.",
+      "lat": 27.807,
+      "lng": 88.698,
+      "access": "partial"
+    },
+    {
+      "id": "gurudongmar-lake",
+      "title": "Gurudongmar Lake",
+      "location": "North Sikkim",
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "A sacred high-altitude wonder ringed by snowy peaks.",
+      "lat": 28.025,
+      "lng": 88.7,
+      "access": "limited"
+    },
+    {
+      "id": "namchi-char-dham",
+      "title": "Namchi Char Dham",
+      "location": "Namchi",
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Pilgrimage complex with panoramic viewpoints.",
+      "lat": 27.165,
+      "lng": 88.356,
+      "access": "full"
+    },
+    {
+      "id": "pelling-skywalk",
+      "title": "Pelling Skywalk",
+      "location": "Pelling",
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Glass skywalk gazing at Chenrezig statue and valleys.",
+      "lat": 27.32,
+      "lng": 88.23,
+      "access": "partial"
+    }
+  ],
+  "events": [
+    {
+      "id": "losar",
+      "title": "Losar Festival",
+      "location": "Gangtok",
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Monk dances, trumpets and prayer flag ceremonies."
+    },
+    {
+      "id": "pang-lhabsol",
+      "title": "Pang Lhabsol",
+      "location": "Rumtek",
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Masked dance honoring guardian deity Khangchendzonga."
+    },
+    {
+      "id": "saga-dawa",
+      "title": "Saga Dawa",
+      "location": "All Sikkim",
+      "image": "/placeholder.svg?height=240&width=400",
+      "description": "Processions and prayers commemorating Buddha's life."
+    }
+  ]
+}

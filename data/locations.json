@@ -1,0 +1,157 @@
+{
+  "stations": [
+    {
+      "id": "station-1",
+      "name": "New Jalpaiguri Railway Station",
+      "type": "station",
+      "address": "Siliguri, West Bengal 734003",
+      "latitude": 26.6854,
+      "longitude": 88.3967,
+      "description": "Major railway junction connecting to Sikkim",
+      "amenities": ["parking", "waiting_room", "food_court", "atm"]
+    },
+    {
+      "id": "station-2",
+      "name": "Bagdogra Airport",
+      "type": "station",
+      "address": "Bagdogra, West Bengal 734421",
+      "latitude": 26.6812,
+      "longitude": 88.3285,
+      "description": "Nearest airport to Sikkim",
+      "amenities": ["parking", "taxi_stand", "car_rental", "restaurants"]
+    }
+  ],
+  "taxis": [
+    {
+      "id": "taxi-1",
+      "name": "Sikkim Taxi Service",
+      "type": "taxi",
+      "address": "NJP to Gangtok",
+      "latitude": 26.6854,
+      "longitude": 88.3967,
+      "description": "Shared taxi service to Gangtok",
+      "price": 150,
+      "contact": "+91-9876543210",
+      "operatingHours": "24/7"
+    },
+    {
+      "id": "taxi-2",
+      "name": "Mountain Cab Service",
+      "type": "taxi",
+      "address": "Airport to Gangtok",
+      "latitude": 26.6812,
+      "longitude": 88.3285,
+      "description": "Private taxi service",
+      "price": 2500,
+      "contact": "+91-9876543211",
+      "operatingHours": "6:00 AM - 10:00 PM"
+    }
+  ],
+  "hotels": [
+    {
+      "id": "hotel-1",
+      "name": "Hotel Tibet",
+      "type": "hotel",
+      "address": "MG Road, Gangtok, Sikkim 737101",
+      "latitude": 27.3314,
+      "longitude": 88.6138,
+      "description": "Luxury hotel in the heart of Gangtok",
+      "price": 4500,
+      "rating": 4.5,
+      "amenities": ["wifi", "restaurant", "spa", "parking", "room_service"],
+      "contact": "+91-3592-202468"
+    },
+    {
+      "id": "hotel-2",
+      "name": "The Elgin Nor-Khill",
+      "type": "hotel",
+      "address": "The Ridge, Gangtok, Sikkim 737101",
+      "latitude": 27.3389,
+      "longitude": 88.6065,
+      "description": "Heritage hotel with mountain views",
+      "price": 8500,
+      "rating": 4.8,
+      "amenities": ["wifi", "restaurant", "bar", "spa", "garden", "parking"],
+      "contact": "+91-3592-205637"
+    },
+    {
+      "id": "hotel-3",
+      "name": "Zostel Gangtok",
+      "type": "hotel",
+      "address": "Development Area, Gangtok, Sikkim 737102",
+      "latitude": 27.3225,
+      "longitude": 88.6077,
+      "description": "Budget-friendly hostel for backpackers",
+      "price": 800,
+      "rating": 4.2,
+      "amenities": ["wifi", "common_area", "kitchen", "laundry"],
+      "contact": "+91-8447-739739"
+    }
+  ],
+  "restaurants": [
+    {
+      "id": "restaurant-1",
+      "name": "Thukpa House",
+      "type": "restaurant",
+      "address": "MG Road, Gangtok, Sikkim 737101",
+      "latitude": 27.3325,
+      "longitude": 88.6140,
+      "description": "Authentic Tibetan and Sikkimese cuisine",
+      "price": 300,
+      "rating": 4.3,
+      "operatingHours": "11:00 AM - 10:00 PM",
+      "contact": "+91-9876543212"
+    },
+    {
+      "id": "restaurant-2",
+      "name": "Cafe Live & Loud",
+      "type": "restaurant",
+      "address": "MG Road, Gangtok, Sikkim 737101",
+      "latitude": 27.3320,
+      "longitude": 88.6135,
+      "description": "Popular cafe with live music",
+      "price": 400,
+      "rating": 4.4,
+      "operatingHours": "10:00 AM - 11:00 PM",
+      "contact": "+91-9876543213"
+    }
+  ],
+  "attractions": [
+    {
+      "id": "attraction-1",
+      "name": "Tsomgo Lake",
+      "type": "attraction",
+      "address": "East Sikkim, Sikkim 737100",
+      "latitude": 27.2516,
+      "longitude": 88.7575,
+      "description": "Sacred glacial lake at 12,313 feet",
+      "price": 0,
+      "rating": 4.6,
+      "operatingHours": "6:00 AM - 5:00 PM"
+    },
+    {
+      "id": "attraction-2",
+      "name": "Rumtek Monastery",
+      "type": "attraction",
+      "address": "Rumtek, Sikkim 737135",
+      "latitude": 27.2769,
+      "longitude": 88.7230,
+      "description": "Famous Buddhist monastery",
+      "price": 0,
+      "rating": 4.5,
+      "operatingHours": "6:00 AM - 6:00 PM"
+    },
+    {
+      "id": "attraction-3",
+      "name": "Nathula Pass",
+      "type": "attraction",
+      "address": "East Sikkim, Sikkim 737100",
+      "latitude": 27.3919,
+      "longitude": 88.8450,
+      "description": "Mountain pass on India-China border",
+      "price": 0,
+      "rating": 4.4,
+      "operatingHours": "9:00 AM - 3:00 PM"
+    }
+  ]
+}
