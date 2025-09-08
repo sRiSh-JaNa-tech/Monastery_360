@@ -10,12 +10,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const hotels = await prisma.hotel.findMany()
-    console.log("Fetched hotels:", hotels) // Debug
-    res.status(200).json(hotels)
+    const foods = await prisma.restaurant.findMany()
+    console.log("Fetched foods:", foods)
+    return res.status(200).json(foods)
   } catch (error) {
-    console.error("Error fetching hotels:", error)
-    res.status(500).json({ error: "Failed to fetch hotels" })
+    console.error("Error fetching foods:", error)
+    return res.status(500).json({ error: "Failed to fetch foods" })
   } finally {
     await prisma.$disconnect()
   }
