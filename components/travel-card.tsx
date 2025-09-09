@@ -1,3 +1,4 @@
+
 import Image from "next/image"
 import Link from "next/link"
 import { LocationPill } from "./h-scroll"
@@ -5,12 +6,14 @@ import { LocationPill } from "./h-scroll"
 type BaseCard = {
   id: string
   title: string
-  image: string
+  image?: string // Optional to handle cases where image might be missing
 }
 
 type PlaceCard = BaseCard & {
+  images: string[] // Updated to match schema
   location?: string
   description?: string
+  isTopVisited?: boolean
 }
 
 type PackageCard = BaseCard & {
@@ -28,19 +31,20 @@ type HotelCard = BaseCard & {
 type SimpleCard = {
   id: string
   title: string
-  image: string
+  image?: string
   location?: string
   rating?: number
   priceLabel?: string
   description?: string
 }
 
-export function PlaceCard({ id, title, image, location, description }: PlaceCard) {
+export function PlaceCard({ id, title, images, location, description }: PlaceCard) {
+  const imageUrl = images && images.length > 0 ? images[0] : "/placeholder.svg"
   return (
-    <Link href={`/book/place/${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
+    <Link href={`/travel-card?type=place&id=${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
       <article className="card-hover h-full rounded-lg border bg-card text-card-foreground shadow-sm">
         <Image
-          src={image || "/placeholder.svg"}
+          src={imageUrl}
           alt={title}
           width={400}
           height={240}
@@ -61,7 +65,7 @@ export function PlaceCard({ id, title, image, location, description }: PlaceCard
 
 export function PackageCard({ id, title, image, duration, description, price }: PackageCard) {
   return (
-    <Link href={`/book/package/${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
+    <Link href={`/travel-card?type=package&id=${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
       <article className="card-hover h-full rounded-lg border bg-card text-card-foreground shadow-sm">
         <Image
           src={image || "/placeholder.svg"}
@@ -88,7 +92,7 @@ export function PackageCard({ id, title, image, duration, description, price }: 
 
 export function HotelCard({ id, title, image, location, rating, price }: HotelCard) {
   return (
-    <Link href={`/book/hotel/${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
+    <Link href={`/travel-card?type=hotel&id=${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
       <article className="card-hover h-full rounded-lg border bg-card text-card-foreground shadow-sm">
         <Image
           src={image || "/placeholder.svg"}
@@ -117,7 +121,7 @@ export function HotelCard({ id, title, image, location, rating, price }: HotelCa
 
 export function TaxiCard({ id, title, image, location, priceLabel, rating, description }: SimpleCard) {
   return (
-    <Link href={`/book/taxi/${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
+    <Link href={`/travel-card?type=taxi&id=${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
       <article className="card-hover h-full rounded-lg border bg-card text-card-foreground shadow-sm">
         <Image
           src={image || "/placeholder.svg"}
@@ -144,7 +148,7 @@ export function TaxiCard({ id, title, image, location, priceLabel, rating, descr
 
 export function RestaurantCard({ id, title, image, location, priceLabel, rating, description }: SimpleCard) {
   return (
-    <Link href={`/book/restaurant/${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
+    <Link href={`/travel-card?type=restaurant&id=${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
       <article className="card-hover h-full rounded-lg border bg-card text-card-foreground shadow-sm">
         <Image
           src={image || "/placeholder.svg"}
@@ -171,7 +175,7 @@ export function RestaurantCard({ id, title, image, location, priceLabel, rating,
 
 export function EventCard({ id, title, image, location, description }: SimpleCard) {
   return (
-    <Link href={`/book/event/${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
+    <Link href={`/travel-card?type=event&id=${id}`} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
       <article className="card-hover h-full rounded-lg border bg-card text-card-foreground shadow-sm">
         <Image
           src={image || "/placeholder.svg"}

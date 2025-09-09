@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import locationsData from '../data/locations.json';
 
 // Note: In production, this should be stored in environment variables
-const API_KEY = 'your-gemini-api-key-here'; // Replace with actual API key
+const API_KEY = 'AIzaSyBOyaqrmCH0gSWtC3qxIKXAeWSnL0Q9bf8'; // Replace with actual API key
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 export class GeminiTravelService {

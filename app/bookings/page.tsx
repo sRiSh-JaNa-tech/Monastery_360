@@ -228,7 +228,7 @@ export default function BookingsPage() {
 
       <section className="relative mx-auto mt-3 w-full max-w-6xl overflow-hidden rounded-2xl">
         <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bookings%20Page.png-rMDXm3UpdHfUaiChkAgFFyLJdCvSKk.jpeg"
+          src="/bk-1.jpg"
           alt="Discover Beautiful Sikkim"
           width={1600}
           height={650}

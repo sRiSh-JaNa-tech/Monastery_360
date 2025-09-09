@@ -70,7 +70,7 @@ export default function Virtual360Page() {
     <div 
       className="min-h-screen bg-background"
       style={{
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.28)), url('Monastery_3d/Photos/mountain1.webp')`,
+        backgroundImage: `url('Monastery_3d/Photos/mountain1.webp')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
@@ -81,7 +81,7 @@ export default function Virtual360Page() {
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">Sikkim Monasteries 360°</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+          <p className="text-lg max-w-2xl mx-auto text-grey">
             Immerse yourself in the beauty and spiritual tranquility of Sikkim's most iconic monasteries through our interactive virtual tours.
           </p>
         </div>

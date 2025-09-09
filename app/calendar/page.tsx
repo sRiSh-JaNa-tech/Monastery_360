@@ -87,11 +87,11 @@ export default function CalendarPage() {
       {/* Hero */}
       <section className="relative">
         <Image
-          src="/scenic-sikkim-mountains.jpg"
+          src="/pang-lhabsol-sikkim-dance.jpg"
           alt="Snow-clad mountains and villages of Sikkim"
           width={1920}
           height={960}
-          className="h-[48svh] w-full object-cover"
+          className="h-[48svh] w-full object-cover object-[center_30%]"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-sky-900/30 to-emerald-900/40" />

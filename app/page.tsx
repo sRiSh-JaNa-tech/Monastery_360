@@ -14,7 +14,7 @@ import { CtaBanner } from "@/components/cta-banner"
 interface Place {
   id: string
   title: string
-  image: string
+  images: string[] // Updated to match schema's Json array
   description?: string
   isTopVisited?: boolean
 }
@@ -44,7 +44,6 @@ export default function HomePage() {
     async function fetchData() {
       try {
         console.log("Fetching data from database...") // Debug
-        // Fetch data from API routes
         const [placesRes, packagesRes, hotelsRes] = await Promise.all([
           fetch("/api/places"),
           fetch("/api/packages"),
@@ -63,7 +62,11 @@ export default function HomePage() {
         console.log("Packages:", packagesData) // Debug
         console.log("Hotels:", hotelsData) // Debug
 
-        setPlaces(placesData)
+        // Ensure images are handled correctly
+        setPlaces(placesData.map(p => ({
+          ...p,
+          images: Array.isArray(p.images) ? p.images : ["/placeholder.svg"],
+        })))
         setPackages(packagesData)
         setHotels(hotelsData)
         setLoading(false)
@@ -106,13 +109,15 @@ export default function HomePage() {
       <SectionHeading>Top Visited</SectionHeading>
       <HScroll ariaLabel="Top visited monasteries">
         {places.filter((p) => p.isTopVisited).map((p) => (
-          <PlaceCard key={p.id} {...p} />
+          <a href={`/travel-card?type=place&id=${p.id}`} key={p.id} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
+            <PlaceCard {...p} />
+          </a>
         ))}
       </HScroll>
 
       <CtaBanner
         href="/bookings?filter=place"
-        image="/featuring-monasteries-banner.jpg"
+        image="/home-monastery.jpg"
         title="Featuring Monasteries"
         subtitle="Explore history, rituals, and breathtaking architecture."
       />
@@ -120,7 +125,9 @@ export default function HomePage() {
       <SectionHeading>Travel Packages</SectionHeading>
       <HScroll ariaLabel="Travel packages">
         {packages.map((pkg) => (
-          <PackageCard key={pkg.id} {...pkg} />
+          <a href={`/travel-card?type=package&id=${pkg.id}`} key={pkg.id} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
+            <PackageCard {...pkg} />
+          </a>
         ))}
       </HScroll>
 
@@ -134,19 +141,21 @@ export default function HomePage() {
       <SectionHeading>Top Hotels</SectionHeading>
       <HScroll ariaLabel="Top hotels">
         {hotels.map((h) => (
-          <HotelCard key={h.id} {...h} />
+          <a href={`/travel-card?type=hotel&id=${h.id}`} key={h.id} className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] snap-start">
+            <HotelCard {...h} />
+          </a>
         ))}
       </HScroll>
 
       <CtaBanner
-        href="/bookings"
-        image="/colorful-monastery-interior.jpg"
+        href="/assistant"
+        image="/home-kar.jpg"
         title="Smart Guide Assistant"
         subtitle="Chat with a local-style AI to plan, find and book in minutes."
       />
 
       <footer className="mx-auto my-10 max-w-6xl px-4 text-center text-muted-foreground">
-        <p className="italic">Team Name</p>
+        <p className="italic">The Guilded Quill</p>
       </footer>
     </main>
   )

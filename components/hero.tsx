@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export function Hero() {
   const src =
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Landing%20Page.png-HlXR1yE8L1J3GMI9meNqAUpvr2eYbb.jpeg"
+    "/home-mountain.jpg"
   return (
     <section className="relative mx-auto mt-2 w-full max-w-6xl overflow-hidden rounded-2xl">
       <Image

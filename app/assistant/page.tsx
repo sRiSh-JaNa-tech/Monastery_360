@@ -1,17 +1,24 @@
-
 "use client"
 
 import { useState, useRef, useEffect } from "react"
 import Head from "next/head"
 import { SiteHeader } from "@/components/site-header"
+import OpenAI from "openai"
 
-// Interface for chat messages
 interface ChatMessage {
   id: string
   role: "user" | "assistant"
   content: string
   timestamp: string
 }
+
+const API_KEY = "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" // Hardcoded API key (replace with your actual key for testing; note: hardcoding in client-side code is insecure for production)
+
+const openai = new OpenAI({ apiKey: API_KEY, dangerouslyAllowBrowser: true }) // Allow browser for client-side usage (not recommended for production)
+
+const SYSTEM_PROMPT = `
+You are Voyage, a virtual tour guide for Sikkim. Greet users warmly and help with travel plans, monastery facts, routes, local food, festivals, and more. Keep responses engaging, informative, and concise. Use markdown for formatting when appropriate. Always suggest related topics or follow-up questions.
+`
 
 export default function AssistantPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
@@ -20,76 +27,97 @@ export default function AssistantPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Scroll to the bottom of the chat when new messages are added
+  useEffect(() => {
+    if (!API_KEY || API_KEY === "your-openai-api-key-here") {
+      console.warn("OpenAI API key is not set. Please replace the hardcoded API_KEY.")
+      const errorMessage: ChatMessage = {
+        id: `msg-${Date.now()}`,
+        role: "assistant",
+        content: "Error: API key not configured. Please set a valid OpenAI API key.",
+        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      }
+      setMessages([errorMessage])
+      return
+    }
+
+    try {
+      const greeting: ChatMessage = {
+        id: `msg-${Date.now()}`,
+        role: "assistant",
+        content: "Hi! I'm Voyage, your virtual tour guide. Where would you like to explore today?",
+        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      }
+      setMessages([greeting])
+    } catch (error) {
+      console.error("Failed to initialize:", error)
+      const errorMessage: ChatMessage = {
+        id: `msg-${Date.now()}`,
+        role: "assistant",
+        content: "Error: Failed to initialize. Check your API key or network connection.",
+        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      }
+      setMessages([errorMessage])
+    }
+  }, [])
+
+  // Scroll to the bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
 
-  // Focus input on mount
+  // Focus input
   useEffect(() => {
     inputRef.current?.focus()
   }, [])
 
-  // Simulate AI response with typing effect
-  const getMockResponse = async (userInput: string): Promise<string> => {
-    console.log("User input:", userInput) // Debug
-    const lowerInput = userInput.toLowerCase()
-    await new Promise((resolve) => setTimeout(resolve, 500)) // Simulate API delay
-    if (lowerInput.includes("monastery")) {
-      return "Rumtek Monastery in Sikkim is a must-visit, known for its stunning architecture and serene vibe. Open 6 AM to 6 PM, entry is ₹10. Want details on how to get there?"
-    } else if (lowerInput.includes("route") || lowerInput.includes("plan")) {
-      return "For a route from Gangtok to Tsomgo Lake, take NH10 for 38 km (about 1.5 hours). Best to hire a taxi or join a guided tour. Need a full itinerary?"
-    } else if (lowerInput.includes("food") || lowerInput.includes("local")) {
-      return "Try momos and thukpa at Taste of Tibet in Gangtok! Avg cost: ₹150-200 per person. Want more restaurant suggestions?"
-    } else {
-      return "I can help with travel plans, monastery facts, or local food in Sikkim. Try asking about 'monasteries,' 'routes,' or 'food' for specific info!"
-    }
-  }
+  const getResponse = async (userInput: string): Promise<string> => {
+    const fullMessages = [
+      { role: "system", content: SYSTEM_PROMPT },
+      ...messages.map((msg) => ({ role: msg.role, content: msg.content })),
+      { role: "user", content: userInput },
+    ];
 
-  // Handle sending a message
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: fullMessages }),
+      });
+
+      const data = await res.json();
+      return data.reply?.content || "No response received.";
+    } catch (error) {
+      console.error("API call error:", error);
+      return "Error: Unable to get response from AI. Please try again.";
+    }
+  };
+
   const handleSend = async () => {
-    if (!input.trim()) return
-    setIsLoading(true)
+    if (!input.trim()) return;
+    setIsLoading(true);
 
-    const newMessage: ChatMessage = {
-      id: `msg-${Date.now()}`,
-      role: "user",
-      content: input,
-      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input }),
+      });
+
+      const data = await response.json();
+      setMessages((prev) => [
+        ...prev,
+        { id: Date.now().toString(), role: "user", content: input, timestamp: new Date().toLocaleTimeString() },
+        { id: (Date.now() + 1).toString(), role: "assistant", content: data.reply, timestamp: new Date().toLocaleTimeString() },
+      ]);
+    } catch (err) {
+      console.error("Fetch error:", err);
+    } finally {
+      setIsLoading(false);
+      setInput("");
     }
-
-    setMessages((prev) => [...prev, newMessage])
-    setInput("")
-
-    // Simulate typing effect for assistant response
-    const response = await getMockResponse(newMessage.content)
-    const assistantMessage: ChatMessage = {
-      id: `msg-${Date.now() + 1}`,
-      role: "assistant",
-      content: "", // Start empty for typing effect
-      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-    }
-
-    setMessages((prev) => [...prev, assistantMessage])
-
-    // Simulate typing by adding characters gradually
-    let currentText = ""
-    for (let i = 0; i < response.length; i++) {
-      await new Promise((resolve) => setTimeout(resolve, 30)) // Adjust speed (30ms per char)
-      currentText += response[i]
-      setMessages((prev) =>
-        prev.map((msg) =>
-          msg.id === assistantMessage.id ? { ...msg, content: currentText } : msg
-        )
-      )
-    }
-
-    console.log("Assistant response:", response) // Debug
-    setIsLoading(false)
-  }
-
-  // Handle quick reply buttons
+  };
   const handleQuickReply = async (query: string) => {
+    if (query === "start") return
     setInput(query)
     await handleSend()
   }
@@ -100,11 +128,17 @@ export default function AssistantPage() {
     }
   }
 
-  // Clear chat history
   const handleClearChat = () => {
     setMessages([])
-    console.log("Chat history cleared") // Debug
+    console.log("Chat history cleared")
     inputRef.current?.focus()
+    const greeting: ChatMessage = {
+      id: `msg-${Date.now()}`,
+      role: "assistant",
+      content: "Hi! I'm Voyage, your virtual tour guide. Where would you like to explore today?",
+      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    }
+    setMessages([greeting])
   }
 
   return (
@@ -116,12 +150,12 @@ export default function AssistantPage() {
       <section className="mx-auto max-w-6xl px-4 py-8">
         <h1 className="font-serif text-3xl">Smart Guide Assistant</h1>
         <p className="mt-2 max-w-2xl text-muted-foreground">
-          Chat with our AI to explore monasteries, plan travel routes, or discover local food in Sikkim.
+          Ask travel questions, get monastery facts, plan routes and discover local food.
         </p>
-        <div className="mt-6 rounded-xl border bg-gradient-to-br from-emerald-50 to-indigo-50 p-6 shadow-sm">
+        <div className="mt-6 rounded-xl border bg-card p-6">
           {/* Chat container */}
           <div
-            className="flex h-[500px] flex-col rounded-lg border bg-white shadow-md"
+            className="flex h-[500px] flex-col rounded-lg border bg-white shadow-sm"
             role="region"
             aria-label="Chat window"
           >
@@ -144,7 +178,7 @@ export default function AssistantPage() {
                     />
                   </svg>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Start chatting about travel plans, monasteries, or local food!
+                    Start typing to ask about monasteries, routes, or food!
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {["Monastery Info", "Plan a Route", "Local Food"].map((query) => (
@@ -172,7 +206,7 @@ export default function AssistantPage() {
                       className={`flex max-w-[70%] items-start gap-2 rounded-lg p-3 ${
                         msg.role === "user"
                           ? "bg-emerald-600 text-white"
-                          : "bg-indigo-100 text-foreground"
+                          : "bg-muted text-foreground"
                       }`}
                     >
                       {msg.role === "assistant" && (
@@ -201,7 +235,7 @@ export default function AssistantPage() {
               )}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="max-w-[70%] rounded-lg bg-indigo-100 p-3 flex items-center gap-2">
+                  <div className="max-w-[70%] rounded-lg bg-muted p-3 flex items-center gap-2">
                     <div className="flex space-x-1">
                       <div className="h-2 w-2 rounded-full bg-indigo-600 animate-bounce" style={{ animationDelay: "0s" }}></div>
                       <div className="h-2 w-2 rounded-full bg-indigo-600 animate-bounce" style={{ animationDelay: "0.2s" }}></div>
@@ -213,7 +247,6 @@ export default function AssistantPage() {
               )}
               <div ref={messagesEndRef} />
             </div>
-            {/* Input area */}
             <div className="border-t p-4 bg-gray-50">
               <div className="flex items-center gap-2">
                 <input
