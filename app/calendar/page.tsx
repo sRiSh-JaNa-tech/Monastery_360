@@ -423,69 +423,7 @@ export default function CalendarPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t bg-white">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-8 sm:grid-cols-3">
-          <div>
-            <h4 className="font-serif text-lg">Quick Links</h4>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <a className="hover:underline" href="/privacy">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a className="hover:underline" href="/terms">
-                  Terms & Conditions
-                </a>
-              </li>
-              <li>
-                <a className="hover:underline" href="/faqs">
-                  FAQs
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-serif text-lg">Contact</h4>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>+91 98765 43210</li>
-              <li>hello@sikkimtourism.example</li>
-              <li>MG Marg, Gangtok, Sikkim</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-serif text-lg">Follow</h4>
-            <div className="mt-3 flex gap-3">
-              <a
-                aria-label="Instagram"
-                href="#"
-                className="rounded-full bg-slate-100 p-2 text-slate-600 transition hover:bg-slate-200 hover:text-slate-800"
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
-                  <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.5A5.5 5.5 0 1017.5 13 5.5 5.5 0 0012 7.5zm0 2A3.5 3.5 0 1115.5 13 3.5 3.5 0 0112 9.5zM18 6.3a1 1 0 11-1 1 1 1 0 011-1z" />
-                </svg>
-              </a>
-              <a
-                aria-label="Twitter/X"
-                href="#"
-                className="rounded-full bg-slate-100 p-2 text-slate-600 transition hover:bg-slate-200 hover:text-slate-800"
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
-                  <path d="M20.9 2L13.5 11l7.3 11h-2.7L12 14l-6 8H3.3L10 11 2.9 2h2.7l6.1 8.1L17.1 2h3.8z" />
-                </svg>
-              </a>
-              <a
-                aria-label="Facebook"
-                href="#"
-                className="rounded-full bg-slate-100 p-2 text-slate-600 transition hover:bg-slate-200 hover:text-slate-800"
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
-                  <path d="M22 12a10 10 0 10-11.6 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-2v7A10 10 0 0022 12z" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
+      <footer className="mx-auto my-10 max-w-6xl px-4">
         <div className="border-t py-4 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} Sikkim Tourism (Demo). All rights reserved.
         </div>
