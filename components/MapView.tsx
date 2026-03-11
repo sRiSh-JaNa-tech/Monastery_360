@@ -10,7 +10,7 @@ export const MapView: React.FC<MapViewProps> = ({ plan, className = '' }) => {
   const mapRef = useRef<HTMLIFrameElement>(null);
 
   const generateMapUrl = () => {
-    const apiKey = 'AIzaSyCaACwjcWVwRy0RsmAD3v_wcC7DmMncZxQ'; // Replace with your actual API key
+    const apiKey = ''; // Replace with your actual API key
     const baseUrl = 'https://www.google.com/maps/embed/v1/place';
     
     if (!plan || plan.steps.length === 0) {
